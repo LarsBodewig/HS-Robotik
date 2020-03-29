@@ -1,14 +1,14 @@
-from commons.alphabot import alphabot
+from commons import AlphaBot
 import time
 
 
 def main():
-    bot = alphabot()
-    while(true):
-        bot.servo.forward()
-        time.sleep(0.5)
-        bot.servo.right()
-        time.sleep(1)
+    bot = AlphaBot()
+    while True:
+        bot.SERVO.forward()
+        time.sleep(0.1)
+        bot.SERVO.right()
+        time.sleep(3)
 
 if __name__ == '__main__':
     main()
