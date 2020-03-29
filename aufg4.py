@@ -1,7 +1,7 @@
-from commons import AlphaBot2 as AlphaBot
+from commons import AlphaBot
 
 
-def main(self):
+def main():
     bot = AlphaBot()
     
 
