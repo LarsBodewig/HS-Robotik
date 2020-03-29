@@ -1,9 +1,9 @@
-from commons import AlphaBot
+from commons.alphabot import alphabot
 import time
 
 
-def main(self):
-    bot = AlphaBot()
+def main():
+    bot = alphabot()
     while(true):
         bot.servo.forward()
         time.sleep(0.5)

@@ -1,7 +1,7 @@
 from servo import Servo
 
 
-class AlphaBot(object):
+class alphabot(object):
 	
 	def __init__(self):
-		self.SERVO = Servo()
+		self.servo = Servo()
