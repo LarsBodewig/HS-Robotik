@@ -99,6 +99,28 @@ class searchColorStripes(object):
 
         return (False, maxY, minY)
 
+    def distanceFromImgCenter(self, f):
+        img = Image.open(f)
+        pix_val = img.load()
+
+        height = img.size[1]
+        width = img.size[0]
+        half = 0
+
+        if width % 2 > 1:
+            half = math.floor((width -1)/2)
+        else:
+            half = math.floor(width / 2)
+
+        resultList = []
+
+        for x in range(0, width):
+            retVal = self.findTreeColorStripesInARow(height, pix_val, x)
+            if retVal[0] == True:
+                resultList.extend((x, retVal))
+        print (resultList)
+        return resultList
+
     def drawBlackLinesOnImg(self, f):
         img = Image.open(f)
 
@@ -113,14 +135,8 @@ class searchColorStripes(object):
 
         height = img.size[1]
         width = img.size[0]
-        half = 0
 
         print('width: %s height: %s '%(width, height))
-
-        if width % 2 > 1:
-            half = math.floor((width -1)/2)
-        else:
-            half = math.floor(width / 2)
 
         for x in range(0, width):
             retVal = self.findTreeColorStripesInARow(height, pix_val, x)

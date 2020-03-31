@@ -7,4 +7,4 @@ f = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues.
 
 scs = searchColorStripes()
 
-scs.drawBlackLinesOnImg(f)
+scs.distanceFromImgCenter(f)
