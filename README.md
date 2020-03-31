@@ -26,6 +26,23 @@
 - in Form eines Videos, das die Erfüllung der Aufgabe zeigt
 - Namensschema: SS20-OptRob-T01-Ch[0-5]
 
+## Fragen
+- Was passiert wenn der Bot mit 90 ° auf eine Linie trifft (Aufgabe 3 Billiard) bzw. knapp 90 grad
+- Wie präzise sind die Boden Sensoren
+  - 5 sensoren an der unterseite , fast 90 grad
+  - wie präzise ist der strich
+  - mit den äßeren sensoren messen
+  - zeitliche diferenz messen
+  - in relation zur vorwärtsbewegung
+  - sensor nach unten
+  - kamera stellen und spielfed aufnehmen - spiefeld
+- Wie soll der Bot reagieren wenn keine Säule im Bild ist, um sich auszurichten
+  kamera stellen und spielfed aufnehmen - spiefeld erkennung
+
+## Hinweise von Herr Kuntze
+- Odometrie des robotors getrennt (links / rechts)
+- Kamera hat ebenfalls motoren
+
 ---
 
 Run `git config --add include.path ../.gitconfig` to include the template config in your project config.

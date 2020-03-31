@@ -1,27 +1,29 @@
-import Servo
-import Sensor
+from servo import Servo
+from sensor import Sensor
+from camera import Camera
 import time
 
 class AlphaBot(object):
-	
-	def __init__(self):
-		self.SERVO = Servo()
+
+    def __init__(self):
+        self.SERVO = Servo()
         self.SENSOR = Sensor()
+        self.CAMERA = Camera()
         self.calibrateSensor()
 
-    def forwardFor(self, time):
+    def forwardFor(self, duration):
         self.SERVO.forward()
-        time.sleep(time)
+        time.sleep(duration)
         self.SERVO.stop()
 
-    def leftFor(self, time):
+    def leftFor(self, duration):
         self.SERVO.left()
-        time.sleep(time)
+        time.sleep(duration)
         self.SERVO.stop()
-    
-    def rightFor(self, time):
+
+    def rightFor(self, duration):
         self.SERVO.right()
-        time.sleep(time)
+        time.sleep(duration)
         self.SERVO.stop()
 
     def calibrateSensor(self):
