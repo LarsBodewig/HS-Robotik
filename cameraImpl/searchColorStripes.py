@@ -8,6 +8,10 @@ class searchColorStripes(object):
     #------ CONFIG
     cropPercentage = 0.1 # 10% of Image will be ignored (total of x * 2 %, top part and bottom part are cropped)
     rgbToleranze = 20 # measures if a color is within a certain range (x1 - t <= x2 <= x1 + t) for each RGB Value
+    maxPixelBetweenHits = 2 # every color hit of the tree colors can be this x max pixel amount following
+                            # 1 = no pixel in between two hits
+                            # 2 = 1 pixel in between hits
+                            # 10 = 9 pixels inbetween hits
 
     #        r, g, b
     frstC = (238, 26, 38)
@@ -17,14 +21,15 @@ class searchColorStripes(object):
 
 
     #default example:
-    def __init__(self, newCropPercentage=0.1, newRgbToleranze=20, newFirstColor=(238, 26, 38), newSecondColor=(33, 178, 77), newThirdColor=(0, 162, 234)):
+    def __init__(self, newCropPercentage=0.1, newRgbToleranze=20, newMaxPixelBetweenHits=2, newFirstColor=(238, 26, 38), newSecondColor=(33, 178, 77), newThirdColor=(0, 162, 234)):
         print('I\'m ready!')
         self.cropPercentage = newCropPercentage
         self.rgbToleranze = newRgbToleranze
+        self.maxPixelBetweenHits = newMaxPixelBetweenHits
         self.frstC = newFirstColor
         self.scndC = newSecondColor
         self.thrdC = newThirdColor
-        print('CONFIG: CP: %s RGB-T: %s C1: %s C2: %s C3: %s '%(self.cropPercentage, self.rgbToleranze, self.frstC, self.scndC, self.thrdC))
+        print('CONFIG: CP: %s RGB-T: %s MP: %s C1: %s C2: %s C3: %s '%(self.cropPercentage, self.rgbToleranze, self.maxPixelBetweenHits, self.frstC, self.scndC, self.thrdC))
 
     # test for colors within the same range tested by toleranze
     # also same value is an hit
@@ -117,9 +122,32 @@ class searchColorStripes(object):
         for x in range(0, width):
             retVal = self.findTreeColorStripesInARow(height, pix_val, x)
             if retVal[0] == True:
-                resultList.extend((x, retVal))
-        print (resultList)
-        return resultList
+                newTupel = (x, retVal)
+                resultList.append(newTupel)
+
+        colorStripeHits = sorted(resultList)
+        colorStripeRange = []
+        first = -1
+        last = -1
+
+        for i in range(0, len(colorStripeHits) -1):
+            thisHit = colorStripeHits[i][0]
+            nextHit= colorStripeHits[i+1][0]
+            if thisHit - self.maxPixelBetweenHits < nextHit < thisHit + self.maxPixelBetweenHits :
+                last = colorStripeHits[i][0]
+                if first == -1:
+                    first = colorStripeHits[i][0]
+            else:
+                newTupel = (first/width,last/width)
+                colorStripeRange.append(newTupel)
+                first = -1
+                last = -1
+
+        newTupel = (first/width, last/width, first, last)
+        colorStripeRange.append(newTupel)
+
+        return colorStripeRange
+
 
     def drawBlackLinesOnImg(self, f):
         img = Image.open(f)
