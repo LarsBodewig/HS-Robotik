@@ -64,7 +64,9 @@ class searchColorStripes(object):
         fstHitOfTrdColor = -1
         lastHitOfTrdColor = -1
         # foreach is from top to bottom of the image, REDUCED by % (configured cropPercentage in) of the image size
-        for y in range(0 + cropVal, height - cropVal - 1):
+        fromY = math.floor(0 + cropVal)
+        toY = math.floor(height - cropVal - 1)
+        for y in range(fromY, toY):
             thisPixel = pix_val[x,y]
             nextPixel = pix_val[x,y]
             # if this pixel and next pixel match a color, increase amount of total hits of that representive color
