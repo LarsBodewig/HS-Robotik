@@ -242,5 +242,5 @@ class searchColorStripes(object):
 
         #show the image
         img.show()
-        return results
+        return img
     #end drawBlackLinesOnImg
