@@ -1,1 +1,0 @@
-from searchColorStripes import searchColorStripes

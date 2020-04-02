@@ -1,12 +1,13 @@
 from commons import AlphaBot
-from cameraImpl import searchColorStripes
 
 def main():
     bot = AlphaBot()
-    stream = bot.CAMERA.captureImage()
-    scs = searchColorStripes(newDebug=True)
+    for i in range(0, 10):
+        result = bot.CAMERA.searchCorners()
+        print(result)
+        bot.leftFor(0.5)
 
-    result = scs.distanceFromImgCenter(stream)
+
 
 if __name__ == '__main__':
     main()
