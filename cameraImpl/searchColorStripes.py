@@ -18,6 +18,7 @@ class searchColorStripes(object):
     frstC = (238, 26, 38)
     scndC = (33, 178, 77)
     thrdC = (0, 162, 234)
+
     debug = False
     #------ CONFIG
 
@@ -242,5 +243,6 @@ class searchColorStripes(object):
 
         #show the image
         img.show()
-        return img
+        theResult = (img, results)
+        return theResult
     #end drawBlackLinesOnImg
