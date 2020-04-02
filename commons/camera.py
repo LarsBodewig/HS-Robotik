@@ -3,7 +3,7 @@ from io import BytesIO
 
 class Camera(object):
 
-	def __init__(self):
+    def __init__(self):
         self.piCamera = PiCamera()
         self.piCamera.resolution = (1024, 768)
 
