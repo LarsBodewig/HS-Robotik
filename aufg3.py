@@ -1,5 +1,5 @@
 from commons import AlphaBot
-from searchColorStripes import searchColorStripes
+from cameraImpl import searchColorStripes
 
 def main():
     bot = AlphaBot()
