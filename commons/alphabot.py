@@ -1,6 +1,6 @@
-import Servo
-import Sensor
-import Camera
+from servo import Servo
+from sensor import Sensor
+from camera import Camera
 import time
 
 class AlphaBot(object):
