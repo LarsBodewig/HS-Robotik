@@ -5,8 +5,8 @@ import time
 
 class AlphaBot(object):
 
-	def __init__(self):
-		self.SERVO = Servo()
+    def __init__(self):
+        self.SERVO = Servo()
         self.SENSOR = Sensor()
         self.CAMERA = Camera()
         self.calibrateSensor()
