@@ -64,8 +64,8 @@ class searchColorStripes(object):
         fstHitOfTrdColor = -1
         lastHitOfTrdColor = -1
         # foreach is from top to bottom of the image, REDUCED by % (configured cropPercentage in) of the image size
-        fromY = math.floor(0 + cropVal)
-        toY = math.floor(height - cropVal - 1)
+        fromY = int(math.floor(0 + cropVal))
+        toY = int(math.floor(height - cropVal - 1))
         for y in range(fromY, toY):
             thisPixel = pix_val[x,y]
             nextPixel = pix_val[x,y]
