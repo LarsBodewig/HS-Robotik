@@ -11,19 +11,19 @@ class AlphaBot(object):
         self.CAMERA = Camera()
         self.calibrateSensor()
 
-    def forwardFor(self, time):
+    def forwardFor(self, duration):
         self.SERVO.forward()
-        time.sleep(time)
+        time.sleep(duration)
         self.SERVO.stop()
 
-    def leftFor(self, time):
+    def leftFor(self, duration):
         self.SERVO.left()
-        time.sleep(time)
+        time.sleep(duration)
         self.SERVO.stop()
 
-    def rightFor(self, time):
+    def rightFor(self, duration):
         self.SERVO.right()
-        time.sleep(time)
+        time.sleep(duration)
         self.SERVO.stop()
 
     def calibrateSensor(self):
