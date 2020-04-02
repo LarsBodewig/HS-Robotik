@@ -154,7 +154,7 @@ class searchColorStripes(object):
         # moves along the x-coordinates of the image and checks if a range of pixels from the y-coordinates
         # do contain the tree colors defined with frstC, scndC and thrdC
         for x in range(0, width):
-            retVal = self.findTreeColorStripesInARow(height, pix_val, x)
+            retVal = self.findTreeColorStripesInARow(math.floor(height), pix_val, x)
             if retVal[0] == True:
                 newTupel = (x, retVal)
                 resultList.append(newTupel)
