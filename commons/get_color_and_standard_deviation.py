@@ -41,9 +41,9 @@ def ImageGetColorAndStdDev(img):
     stdDeviationB = math.sqrt(sumB/totalAmount)
     return (averageR,averageG,averageB,stdDeviationR,stdDeviationG,stdDeviationB)
 
-f1 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\Yellow_1.png', "rb")
-f2 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\Red_1.png', "rb")
-f3 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\Green_1.png', "rb")
+f1 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\Yellow_1.png', "rb")
+f2 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\Red_1.png', "rb")
+f3 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\Green_1.png', "rb")
 
 imgColor1 = Image.open(f1)
 imgColor2 = Image.open(f2)

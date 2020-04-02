@@ -2,11 +2,11 @@ from searchColorStripes import searchColorStripes
 import io
 
 #Load the image
-#img = Image.open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues.jpg', 'r')
-#f = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues.jpg', "rb")
-#f2 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues2.jpg', "rb")
-#f3 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues3.jpg', "rb")
-f4 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\PHOTO-2020-04-02-16-45-50.jpg', "rb")
+#img = Image.open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues.jpg', 'r')
+#f = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues.jpg', "rb")
+#f2 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues2.jpg', "rb")
+#f3 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues3.jpg', "rb")
+f4 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\PHOTO-2020-04-02-16-45-50.jpg', "rb")
 
 #farbcodes aus dem bild PHOTO-2020-04-02-16-45-50.jpg, welches unser spielbrett darstellt
 # [ R x G x B; Standardabweichung zu R,G,B
@@ -34,7 +34,7 @@ img4 = scs.drawBlackLinesOnImg(f4)
 #f2.close()
 #f3.close()
 f4.close()
-#img1.save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues_cross.jpg')
-#img2.save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues2_cross.jpg')
-#img3[0].save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\trust_issues3_cross.jpg')
-img4[0].save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraImpl\\test_colors_from_pi_1.jpg')
+#img1.save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues_cross.jpg')
+#img2.save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues2_cross.jpg')
+#img3[0].save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues3_cross.jpg')
+img4[0].save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\test_colors_from_pi_1.jpg')
