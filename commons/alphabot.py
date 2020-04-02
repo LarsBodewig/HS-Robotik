@@ -1,12 +1,14 @@
 import Servo
 import Sensor
+import Camera
 import time
 
 class AlphaBot(object):
-	
+
 	def __init__(self):
 		self.SERVO = Servo()
         self.SENSOR = Sensor()
+        self.CAMERA = Camera()
         self.calibrateSensor()
 
     def forwardFor(self, time):
@@ -18,7 +20,7 @@ class AlphaBot(object):
         self.SERVO.left()
         time.sleep(time)
         self.SERVO.stop()
-    
+
     def rightFor(self, time):
         self.SERVO.right()
         time.sleep(time)
