@@ -5,7 +5,7 @@ class Camera(object):
 
 	def __init__(self):
         self.piCamera = PiCamera()
-        self.piCamera.resolution = (800, 800)
+        self.piCamera.resolution = (1024, 768)
 
     def captureImage(self):
 

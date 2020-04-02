@@ -42,5 +42,3 @@
 
 hinweis herr kuntze: Odometrie des robotors getrennt (links / rechts)
   kamara hat ebenfalls motoren
-
--
