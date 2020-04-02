@@ -3,7 +3,7 @@ from cameraImpl import searchColorStripes
 
 def main():
     bot = AlphaBot()
-    stream = bot.captureImage()
+    stream = bot.CAMERA.captureImage()
     scs = searchColorStripes()
 
     result = scs.distanceFromImgCenter(stream)
