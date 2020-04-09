@@ -3,22 +3,24 @@ import random
 
 def main():
     bot = AlphaBot()
+    bot.calibrateSensor()
     while True:
-        moveRandom()
-        line = bot.isOnLine()
-        if line:
-            turn()
+        turn()
+        time = random() * 10
+        while time > 0 and not bot.isOnLine():
+            bot.forwardFor(0.1)
+            time = time - 0.1
+        if bot.isOnLine():
+            goBack()
 
-def moveRandom():
+def turn():
     turn = random()
-    time = random() * 10
     if turn < 0.5:
         bot.leftFor(time)
     else:
         bot.rightFor(time)
-    bot.forwardFor(0.1)
 
-def turn():
+def goBack():
     bot.rightFor(6)
     bot.forwardFor(2)
 

@@ -9,7 +9,6 @@ class AlphaBot(object):
         self.SERVO = Servo()
         self.SENSOR = Sensor()
         self.CAMERA = Camera()
-        self.calibrateSensor()
 
     def forwardFor(self, duration):
         self.SERVO.forward()
