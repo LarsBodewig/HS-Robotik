@@ -39,3 +39,9 @@
 
 - Odometrie des robotors getrennt (links / rechts)
 - Kamara hat ebenfalls motoren
+
+## TODO
+
+- Werte für Kontrastsensor ermitteln mittels `calibrateSensor.py` -> Werte in `alphabot.py` setzen
+- Aufg2 und 3 testen
+- Winkelbestimmung mittels Kontrastsensor konfigurieren
