@@ -87,7 +87,7 @@ class Sensor(object):
             self.last_value = avg/sum
         return self.last_value,sensor_values
 
-    def    readCalibrated(self):
+    def readCalibrated(self):
         value = 0
         sensor_values = self.AnalogRead();
         for i in range (0,self.numSensors):

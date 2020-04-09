@@ -2,12 +2,21 @@ from servo import Servo
 from sensor import Sensor
 from camera import Camera
 import time
+import math
+
+sensor_mins = [0,0,0,0,0]
+sensor_maxs = [1023,1023,1023,1023,1023]
+sensor_threshold = 200
+sensor_margin = 1
+sensor_line_width = 3
 
 class AlphaBot(object):
 
     def __init__(self):
         self.SERVO = Servo()
         self.SENSOR = Sensor()
+        self.SENSOR.calibratedMin = sensor_mins
+        self.SENSOR.calibratedMax = sensor_maxs
         self.CAMERA = Camera()
 
     def forwardFor(self, duration):
@@ -25,15 +34,25 @@ class AlphaBot(object):
         time.sleep(duration)
         self.SERVO.stop()
 
-    def calibrateSensor(self):
-        for i in range(0, 15):
-            self.SENSOR.calibrate()
-            self.forwardFor(0.1)
-
     def isOnLine(self):
-        last_value, sensor_values = self.SENSOR.readLine()
+        last_value, sensor_thresholds = self.SENSOR.readLine()
         onLine = False
         for i in range(0, self.SENSOR.numSensors):
-            if sensor_values[i] > 200:
+            if sensor_thresholds[i] > sensor_threshold:
                 onLine = True
         return onLine
+
+    def lineAngle(self):
+        last_value, sensor_thresholds = self.SENSOR.readLine()
+        count = []
+        for i in range(0, self.SENSOR.numSensors):
+            if sensor_thresholds[i] > sensor_threshold:
+                count.append(i)
+        if len(count) < 2:
+            return 90
+        if len(count) == self.SERVO.numSensors:
+            return 0
+        first = count[0]
+        last = count[len(count)-1]
+        distance = (last - first) * sensor_margin
+        return math.asin(sensor_line_width / distance)
