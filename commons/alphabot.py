@@ -4,8 +4,11 @@ from camera import Camera
 import time
 import math
 
-sensor_mins = [0,0,0,0,0]
-sensor_maxs = [1023,1023,1023,1023,1023]
+sensor_maxs = [934, 545, 953, 932, 781]
+sensor_mins = [113, 55, 117, 92, 74]
+
+#sensor_mins = [0,0,0,0,0]
+#sensor_maxs = [1023,1023,1023,1023,1023]
 sensor_threshold = 200
 sensor_margin = 1
 sensor_line_width = 3
@@ -21,7 +24,7 @@ class AlphaBot(object):
             isCurrentlyOnLine = self.isOnLine()
             #do nothing, because not on line
         self.SERVO.stop()
-        
+
     def __init__(self):
         self.SERVO = Servo()
         self.SENSOR = Sensor()
