@@ -5,7 +5,7 @@ def main():
     bot = AlphaBot()
     #bot.calibrateSensor()
     while True:
-        time = random() * 10
+        time = random.random() * 10
         turn(time)
         while time > 0 and not bot.isOnLine():
             bot.forwardFor(0.1)
@@ -15,7 +15,7 @@ def main():
             goBack()
 
 def turn(timeToTurn):
-    turnIt = random()
+    turnIt = random.random()
     if turnIt < 0.5:
         bot.leftFor(timeToTurn)
     else:
