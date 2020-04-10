@@ -3,7 +3,7 @@ import random
 
 def main():
     bot = AlphaBot()
-    bot.calibrateSensor()
+    //bot.calibrateSensor()
     while True:
         turn()
         time = random() * 10
