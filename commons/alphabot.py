@@ -50,10 +50,11 @@ class AlphaBot(object):
         self.SERVO.stop()
 
     def isOnLine(self):
-        last_value, sensor_thresholds = self.SENSOR.readLine()
+        last_value, sensor_values = self.SENSOR.readLine()
         onLine = False
         for i in range(0, self.SENSOR.numSensors):
-            if sensor_thresholds[i] > sensor_threshold:
+            print(sensor_values[i])
+            if sensor_values[i] > sensor_threshold:
                 onLine = True
         return onLine
 
