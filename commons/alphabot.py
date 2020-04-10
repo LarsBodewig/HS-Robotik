@@ -60,10 +60,10 @@ class AlphaBot(object):
         return onLine
 
     def lineAngle(self):
-        last_value, sensor_thresholds = self.SENSOR.readLine()
+        last_value, sensor_values = self.SENSOR.readLine()
         count = []
         for i in range(0, self.SENSOR.numSensors):
-            if sensor_thresholds[i] > sensor_threshold:
+            if sensor_values[i] < sensor_threshold:
                 count.append(i)
         if len(count) < 2:
             return 90
