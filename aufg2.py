@@ -1,13 +1,13 @@
 from commons import AlphaBot
 import random
-
+import time
 def main():
     bot = AlphaBot()
     #bot.calibrateSensor()
     while True:
-        time = random.random() * 10
+        timeToDrive = random.random() * 10
         turn(bot)
-        bot.forwardUntilOnLine(time)
+        bot.forwardUntilOnLine(timeToDrive)
         if bot.isOnLine():
             print(bot.lineAngle())
             goBack(bot)
