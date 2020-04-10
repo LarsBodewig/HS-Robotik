@@ -20,8 +20,8 @@ def turn(bot, timeToTurn):
         bot.rightFor(timeToTurn)
 
 def goBack(bot):
-    bot.rightFor(6)
-    bot.forwardFor(2)
+    bot.rightFor(4)
+    bot.forwardFor(0.3)
 
 if __name__ == '__main__':
     main()
