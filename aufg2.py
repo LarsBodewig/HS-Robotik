@@ -22,7 +22,7 @@ def turn(bot):
 
 def goBack(bot):
     bot.rightFor(2)
-    bot.forwardFor(0.3)
+    bot.forwardUntilOnLine(0.3)
 
 if __name__ == '__main__':
     main()
