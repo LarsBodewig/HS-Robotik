@@ -1,11 +1,14 @@
 from commons import AlphaBot
+import time
 
 def main():
     bot = AlphaBot()
-    for i in range(0, 10):
-        result = bot.CAMERA.searchCorners()
-        print(result)
-        bot.leftFor(0.5)
+    bot.debug = True
+    while True:
+        print("new Read --> ")
+        time.sleep(2)
+        print(bot.lineAngle())
+        print("<-- end Read \n ")
 
 
 

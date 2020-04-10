@@ -1,29 +1,29 @@
 from commons import AlphaBot
 import random
-
+import time
 def main():
     bot = AlphaBot()
-    bot.calibrateSensor()
+    #bot.calibrateSensor()
     while True:
-        turn()
-        time = random() * 10
-        while time > 0 and not bot.isOnLine():
-            bot.forwardFor(0.1)
-            time -= 0.1
+        timeToDrive = random.random() * 10
+        turn(bot)
+        bot.forwardUntilOnLine(timeToDrive)
         if bot.isOnLine():
             print(bot.lineAngle())
-            goBack()
+            goBack(bot)
 
-def turn():
-    turn = random()
-    if turn < 0.5:
-        bot.leftFor(time)
+def turn(bot):
+    timeToTurn = random.random() * 2
+    turnIt = random.random()
+    if turnIt < 0.5:
+        bot.leftFor(timeToTurn)
     else:
-        bot.rightFor(time)
+        bot.rightFor(timeToTurn)
 
-def goBack():
-    bot.rightFor(6)
-    bot.forwardFor(2)
+def goBack(bot):
+    bot.rightFor(2)
+    bot.forwardUntilOnLine(0.3)
 
 if __name__ == '__main__':
+    time.sleep(4)
     main()

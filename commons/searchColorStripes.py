@@ -46,7 +46,7 @@ class searchColorStripes(object):
         if (r1-toleranze <= r2 <= r1+toleranze) and (g1-toleranze <= g2 <= g1+toleranze) and (b1-toleranze <= b2 <= b1+toleranze):
             return True
         return False
-    # returns a tuple of (boolean, firstY, lastY)
+    # returns a tuple of (boolean, firstY, lastY, ordered sequence of colors)
     #  where first param represents a success, second and 3rd param the y-coordinates
     #    where the first and last pixel color hit accured
     def findTreeColorStripesInARow(self, height, pix_val, x):
@@ -62,6 +62,8 @@ class searchColorStripes(object):
         lastHitOfSndColor = -1
         fstHitOfTrdColor = -1
         lastHitOfTrdColor = -1
+        #contains the number of the Colors in wich order they where found in the pixels
+        orderOfColors = []
         # foreach is from top to bottom of the image, REDUCED by % (configured cropPercentage in) of the image size
         fromY = int(math.floor(0 + cropVal))
         toY = int(math.floor(height - cropVal - 1))
@@ -75,18 +77,21 @@ class searchColorStripes(object):
             if self.compareColors(self.frstC, thisPixel, self.rgbToleranze):
                 if self.compareColors(self.frstC, nextPixel,self. rgbToleranze):
                     if fstHitOfFstColor == -1:
+                        orderOfColors.append(1)
                         fstHitOfFstColor = y
                     lastHitOfFstColor = y
                     firstHits += 1
             if self.compareColors(self.scndC, thisPixel, self.rgbToleranze):
                 if self.compareColors(self.scndC, nextPixel, self.rgbToleranze):
                     if fstHitOfSndColor == -1:
+                        orderOfColors.append(2)
                         fstHitOfSndColor = y
                     lastHitOfSndColor = y
                     secondHits += 1
             if self.compareColors(self.thrdC, thisPixel, self.rgbToleranze):
                 if self.compareColors(self.thrdC, nextPixel, self.rgbToleranze):
                     if fstHitOfTrdColor == -1:
+                        orderOfColors.append(3)
                         fstHitOfTrdColor = y
                     lastHitOfTrdColor = y
                     thirdHits += 1
@@ -97,7 +102,7 @@ class searchColorStripes(object):
         # if so, it is not a correct 3-conclusive color stripe
         if -1 in arrayHits:
             if self.debug : print('at least one color did not show up %s '%(arrayHits) )
-            return (False, -1, -1)
+            return (False, -1, -1, orderOfColors)
 
         # measuring the total distance between the first color hit and the last
         # to compare the total amount of all pixel of each color found
@@ -110,12 +115,12 @@ class searchColorStripes(object):
         # there probably is some color rustle in the background going on, therefore the total pixel amount
         # must not be more then x pixels of different color apart from the first and last hit.
         if distancePixelAmount + self.maxPixelBetweenYHits >= distanceFirstAndLastHit:
-            if self.debug : print('did a hit at x: %s hits, but measure did not fit first: %s last: %s distance: %s : %s '%(x, minY, maxY, distanceFirstAndLastHit, distancePixelAmount))
-            return (True, minY, maxY)
+            if self.debug : print('did a hit at x: %s hits, but measure did not fit first: %s last: %s distance: %s - %s, order of colors: %s'%(x, minY, maxY, distanceFirstAndLastHit, distancePixelAmount, orderOfColors))
+            return (True, minY, maxY, orderOfColors)
 
-        return (False, maxY, minY)
+        return (False, maxY, minY, orderOfColors)
 
-    def createResultTupel(self, firstX, lastX, imgWidth, avarageY):
+    def createResultTupel(self, firstX, lastX, imgWidth, avarageY, orderOfColors):
         half = 0
         if imgWidth % 2 > 1:
             half = (imgWidth -1) / 2
@@ -124,8 +129,8 @@ class searchColorStripes(object):
         x1Percentage = (firstX-half)/half
         x2Percentage = (lastX-half)/half
         avarageXPercentage = (x1Percentage + x2Percentage) / 2
-        newTupel = (x1Percentage, x2Percentage, avarageXPercentage, firstX, lastX, avarageY)
-        if self.debug : print('creating new result x1-%%: %s x2-%%: %s avarage-x-%%: %s x1: %s x2: %s avarage-y: %s'%newTupel)
+        newTupel = (x1Percentage, x2Percentage, avarageXPercentage, firstX, lastX, avarageY, orderOfColors)
+        if self.debug : print('creating new result x1-%%: %s x2-%%: %s avarage-x-%%: %s x1: %s x2: %s avarage-y: %s, order of colors %s '%newTupel)
         return newTupel
 
 
@@ -143,7 +148,7 @@ class searchColorStripes(object):
     # last-X : Pixel of the last X hits
     # avarage-Y: Pixel avarage of all Y hits
     #
-    # example Result: [(0.6173913043478261, 0.8826086956521739, 0.75, 372, 433, 108.5)]
+    # example Result: [(0.6173913043478261, 0.8826086956521739, 0.75, 372, 433, 108.5, [1, 2, 3])]
     def distanceFromImgCenter(self, f):
         img = Image.open(f)
         pix_val = img.load()
@@ -159,7 +164,7 @@ class searchColorStripes(object):
             if retVal[0] == True:
                 newTupel = (x, retVal)
                 resultList.append(newTupel)
-        # result list of format: (x-coordinate (boolean, firstY-coordinate, lastY-coordinate))
+        # result list of format: (x-coordinate (boolean, firstY-coordinate, lastY-coordinate, ordered sequence of colors ))
         # if results are empty return early
         if len(resultList) == 0:
             if self.debug : print ('no results. early returning')
@@ -170,6 +175,7 @@ class searchColorStripes(object):
         first = -1
         last = -1
         avarageYs = []
+        lastColorSequence = []
         # iterates through all representive x- and y- Pixel Color hits and builds an avarage of the result List
         for i in range(0, len(colorStripeHits) -1):
             y1 = colorStripeHits[i][1][1]
@@ -183,6 +189,7 @@ class searchColorStripes(object):
             #checking if the conceclusive x- hits are no more then x pixels apart (maxPixelBetweenXHits config)
             if thisHit - self.maxPixelBetweenXHits < nextHit < thisHit + self.maxPixelBetweenXHits :
                 last = colorStripeHits[i][0]
+                lastColorSequence = colorStripeHits[i][1][3]
                 if first == -1:
                     first = colorStripeHits[i][0]
             else:
@@ -197,17 +204,19 @@ class searchColorStripes(object):
                 # last-X : Pixel of the last X hits
                 # avarage-Y: Pixel avarage of all Y hits
                 if self.debug : print (avarageYs)
-                colorStripeRange.append(self.createResultTupel(first, last, width, statistics.mean(avarageYs)))
+                colorStripeRange.append(self.createResultTupel(first, last, width, statistics.mean(avarageYs), lastColorSequence))
                 avarageYs = []
                 first = -1
                 last = -1
         #last pixel hit wont be captured in for-iteration, so last result is added here
         if self.debug : print (avarageYs)
-        colorStripeRange.append(self.createResultTupel(first, last, width, statistics.mean(avarageYs)))
+        colorStripeRange.append(self.createResultTupel(first, last, width, statistics.mean(avarageYs), lastColorSequence))
 
         return colorStripeRange
 
     def drawBlackLinesOnImg(self, f):
+        debugTemp = self.debug
+        self.debug = False
         img = Image.open(f)
 
         #Get basic details about the image
@@ -245,5 +254,6 @@ class searchColorStripes(object):
         #show the image
         img.show()
         theResult = (img, results)
+        self.debug = debugTemp
         return theResult
     #end drawBlackLinesOnImg
