@@ -1,5 +1,8 @@
 import random
+import time
+#while True:
+timex = random.random() * 10
 
-while True:
-    time = random.random() * 10
-    print(time)
+now = time.time()
+print(timex)
+print(now)

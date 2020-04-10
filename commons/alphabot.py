@@ -12,6 +12,7 @@ sensor_mins = [113, 55, 117, 92, 74]
 sensor_threshold = 200
 sensor_margin = 1
 sensor_line_width = 3
+debug = False
 
 class AlphaBot(object):
 
@@ -53,7 +54,7 @@ class AlphaBot(object):
         last_value, sensor_values = self.SENSOR.readLine()
         onLine = False
         for i in range(0, self.SENSOR.numSensors):
-            print(sensor_values[i])
+            if debug: print(sensor_values[i])
             if sensor_values[i] < sensor_threshold:
                 onLine = True
         return onLine
