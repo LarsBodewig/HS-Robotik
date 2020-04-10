@@ -7,9 +7,7 @@ def main():
     while True:
         time = random.random() * 10
         turn(bot, time)
-        while time > 0 and not bot.isOnLine():
-            bot.forwardFor(0.1)
-            time -= 0.1
+        bot.forwardUntilOnLine(time)        
         if bot.isOnLine():
             print(bot.lineAngle())
             goBack(bot)
