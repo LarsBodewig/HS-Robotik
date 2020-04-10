@@ -63,7 +63,7 @@ class AlphaBot(object):
                 count.append(i)
         if len(count) < 2:
             return 90
-        if len(count) == self.SERVO.numSensors:
+        if len(count) == self.SENSOR.numSensors:
             return 0
         first = count[0]
         last = count[len(count)-1]
