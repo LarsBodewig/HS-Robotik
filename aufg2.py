@@ -6,7 +6,7 @@ def main():
     #bot.calibrateSensor()
     while True:
         time = random() * 10
-        turn()
+        turn(time)
         while time > 0 and not bot.isOnLine():
             bot.forwardFor(0.1)
             time -= 0.1
