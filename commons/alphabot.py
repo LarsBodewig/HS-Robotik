@@ -54,7 +54,7 @@ class AlphaBot(object):
         onLine = False
         for i in range(0, self.SENSOR.numSensors):
             print(sensor_values[i])
-            if sensor_values[i] > sensor_threshold:
+            if sensor_values[i] < sensor_threshold:
                 onLine = True
         return onLine
 
