@@ -25,4 +25,5 @@ def goBack(bot):
     bot.forwardUntilOnLine(0.3)
 
 if __name__ == '__main__':
+    time sleep(4)
     main()
