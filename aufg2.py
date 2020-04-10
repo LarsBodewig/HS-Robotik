@@ -5,8 +5,8 @@ def main():
     bot = AlphaBot()
     #bot.calibrateSensor()
     while True:
-        turn()
         time = random() * 10
+        turn()
         while time > 0 and not bot.isOnLine():
             bot.forwardFor(0.1)
             time -= 0.1
@@ -14,12 +14,12 @@ def main():
             print(bot.lineAngle())
             goBack()
 
-def turn():
-    turn = random()
-    if turn < 0.5:
-        bot.leftFor(time)
+def turn(timeToTurn):
+    turnIt = random()
+    if turnIt < 0.5:
+        bot.leftFor(timeToTurn)
     else:
-        bot.rightFor(time)
+        bot.rightFor(timeToTurn)
 
 def goBack():
     bot.rightFor(6)
