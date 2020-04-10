@@ -12,6 +12,16 @@ sensor_line_width = 3
 
 class AlphaBot(object):
 
+
+    def forwardUntilOnLine(self):
+        isCurrentlyOnLine = self.isOnLine()
+        if isCurrentlyOnLine == False :
+            self.SERVO.forward()
+        while isCurrentlyOnLine == False :
+            isCurrentlyOnLine = self.isOnLine()
+            #do nothing, because not on line
+        self.SERVO.stop()
+        
     def __init__(self):
         self.SERVO = Servo()
         self.SENSOR = Sensor()

@@ -19,7 +19,7 @@ f4 = open('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\PHOTO-
 
 scs = searchColorStripes(newRgbToleranze=30,
     newMaxPixelBetweenXHits=4,
-    newDebug=False,
+    newDebug=True,
     newFirstColor=(149, 156, 81),
     newSecondColor=(120, 45, 60),
     newThirdColor=(5, 85, 69))
@@ -30,6 +30,7 @@ scs = searchColorStripes(newRgbToleranze=30,
 #img3 = scs.drawBlackLinesOnImg(f3)
 #print(img3[1])
 img4 = scs.drawBlackLinesOnImg(f4)
+print(img4[1])
 #f.close()
 #f2.close()
 #f3.close()
@@ -37,4 +38,4 @@ f4.close()
 #img1.save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues_cross.jpg')
 #img2.save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues2_cross.jpg')
 #img3[0].save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\trust_issues3_cross.jpg')
-img4[0].save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\test_colors_from_pi_1.jpg')
+#img4[0].save('C:\\Users\\lasse\\github\\SS_20_Robotik_T01\\cameraTestImages\\test_colors_from_pi_1.jpg')

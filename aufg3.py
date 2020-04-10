@@ -6,6 +6,10 @@ def main():
         result = bot.CAMERA.searchCorners()
         print(result)
         bot.leftFor(0.5)
+    for i in range(0, 10):
+        result = bot.CAMERA.searchCorners()
+        print(result)
+        bot.rightFor(0.5)
 
 
 
