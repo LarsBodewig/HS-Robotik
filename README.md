@@ -43,6 +43,6 @@
 ## TODO
 
 [X] - SSH deploy key generieren und eintragen
-[ ] - Werte für Kontrastsensor ermitteln mittels `calibrateSensor.py` -> Werte in `alphabot.py` setzen
+[X] - Werte für Kontrastsensor ermitteln mittels `calibrateSensor.py` -> Werte in `alphabot.py` setzen
 [ ] - Aufg2 und 3 testen
 [ ] - Winkelbestimmung mittels Kontrastsensor konfigurieren
