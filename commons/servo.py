@@ -10,8 +10,8 @@ class Servo(object):
         self.BIN2 = bin2
         self.ENA = ena
         self.ENB = enb
-        self.PA  = 45
-        self.PB  = 60
+        self.PA  = 40
+        self.PB  = 65
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
