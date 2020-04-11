@@ -6,16 +6,10 @@ import math
 
 sensor_maxs = [934, 545, 953, 932, 781]
 sensor_mins = [113, 55, 117, 92, 74]
-
-#sensor_mins = [0,0,0,0,0]
-#sensor_maxs = [1023,1023,1023,1023,1023]
 sensor_threshold = 200
-sensor_margin = 1
-sensor_line_width = 3
 debug = False
 
 class AlphaBot(object):
-
 
     def forwardUntilOnLine(self, howLong):
         isCurrentlyOnLine = self.isOnLine()
@@ -58,24 +52,3 @@ class AlphaBot(object):
             if sensor_values[i] < sensor_threshold:
                 onLine = True
         return onLine
-
-    def lineAngle(self):
-        last_value, sensor_values = self.SENSOR.readLine()
-        count = []
-        print(sensor_values)
-        for i in range(0, self.SENSOR.numSensors):
-            if sensor_values[i] < sensor_threshold:
-                count.append(i)
-        print("lenght: %s"%(len(count)))
-        if len(count) < 2:
-            return 90
-        if len(count) == self.SENSOR.numSensors:
-            return 0
-        first = count[0]
-        last = count[len(count)-1]
-        distance = (last - first) * sensor_margin
-        print("distance: %s"%(distance))
-        if sensor_line_width < distance:
-            return math.degrees(math.asin(sensor_line_width / distance))
-        else:
-            return math.degrees(math.atan(sensor_line_width / distance))

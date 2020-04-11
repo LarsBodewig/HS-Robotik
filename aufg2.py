@@ -9,7 +9,6 @@ def main():
         turn(bot)
         bot.forwardUntilOnLine(timeToDrive)
         if bot.isOnLine():
-            print(bot.lineAngle())
             goBack(bot)
 
 def turn(bot):
