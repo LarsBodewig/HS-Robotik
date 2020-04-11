@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 
 
 class Servo(object):
-    
+
     def __init__(self,ain1=12,ain2=13,ena=6,bin1=20,bin2=21,enb=26):
         self.AIN1 = ain1
         self.AIN2 = ain2
@@ -10,8 +10,8 @@ class Servo(object):
         self.BIN2 = bin2
         self.ENA = ena
         self.ENB = enb
-        self.PA  = 50
-        self.PB  = 50
+        self.PA  = 40
+        self.PB  = 65
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
@@ -51,7 +51,7 @@ class Servo(object):
         GPIO.output(self.BIN1,GPIO.HIGH)
         GPIO.output(self.BIN2,GPIO.LOW)
 
-        
+
     def left(self):
         self.PWMA.ChangeDutyCycle(30)
         self.PWMB.ChangeDutyCycle(30)
@@ -68,15 +68,15 @@ class Servo(object):
         GPIO.output(self.AIN2,GPIO.HIGH)
         GPIO.output(self.BIN1,GPIO.HIGH)
         GPIO.output(self.BIN2,GPIO.LOW)
-        
+
     def setPWMA(self,value):
         self.PA = value
         self.PWMA.ChangeDutyCycle(self.PA)
 
     def setPWMB(self,value):
         self.PB = value
-        self.PWMB.ChangeDutyCycle(self.PB)    
-        
+        self.PWMB.ChangeDutyCycle(self.PB)
+
     def setMotor(self, left, right):
         if((right >= 0) and (right <= 100)):
             GPIO.output(self.AIN1,GPIO.HIGH)

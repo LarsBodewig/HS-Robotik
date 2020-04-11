@@ -38,6 +38,10 @@
 - Odometrie des robotors getrennt (links / rechts)
 - Kamera hat ebenfalls motoren
 
+## Frage für Donnerstag
+ - Können wir Farbe vor die Säulen malen? da der Roboter bei Treffen genau auf eine Säule sich mit dem Kabel verheddert
+  
+
 ## TODO
 
 [X] - SSH deploy key generieren und eintragen
