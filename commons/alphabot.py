@@ -2,7 +2,6 @@ from servo import Servo
 from sensor import Sensor
 from camera import Camera
 import time
-import math
 
 sensor_maxs = [934, 545, 953, 932, 781]
 sensor_mins = [113, 55, 117, 92, 74]
