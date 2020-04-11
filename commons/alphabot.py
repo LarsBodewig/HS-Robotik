@@ -75,4 +75,7 @@ class AlphaBot(object):
         last = count[len(count)-1]
         distance = (last - first) * sensor_margin
         print("distance: %s"&(distance))
-        return math.asin(sensor_line_width / distance)
+        if sensor_line_width < distance:
+            return math.asin(sensor_line_width / distance)
+        else:
+            return math.atan(sensor_line_width / distance)
