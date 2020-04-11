@@ -66,7 +66,7 @@ class AlphaBot(object):
         for i in range(0, self.SENSOR.numSensors):
             if sensor_values[i] < sensor_threshold:
                 count.append(i)
-        print("lenght: " + len(count))
+        print("lenght: %s"%(len(count)))
         if len(count) < 2:
             return 90
         if len(count) == self.SENSOR.numSensors:
