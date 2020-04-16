@@ -42,6 +42,8 @@
 
 ## Frage für Donnerstag
  - Können wir Farbe vor die Säulen malen? da der Roboter bei Treffen genau auf eine Säule sich mit dem Kabel verheddert
+  - Linie vor die Säule, oder Säulen ausserhalb des Spielfeldes
+  - Bevorzugt Säulen außerhalb des Spielfeldes
   
 
 ## TODO
