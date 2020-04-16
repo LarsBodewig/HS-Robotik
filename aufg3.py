@@ -1,4 +1,5 @@
 from commons import AlphaBot
+import time
 
 rotate_max = 1
 rotate_factor = 0.5
@@ -13,14 +14,14 @@ def main():
         pillar_pos = direction
         rotate = rotate_max
         while abs(pillar_pos) - tolerance >= 0:
+            if bot.debug:
+                print("pillar_pos at %s"%(pillar_pos))
             if direction > 0:
                 bot.rightFor(rotate)
             else:
                 bot.leftFor(rotate)
             rotate *= rotate_factor
             pillar_pos = getClosestPillar(bot)
-        if bot.debug: 
-            print("pillar_pos at %s"%(pillar_pos))
         while rotate <= rotate_max:
             if direction > 0:
                 bot.rightFor(rotate)
@@ -30,10 +31,13 @@ def main():
 
 def getClosestPillar(bot):
     pillars = bot.CAMERA.searchCorners()
+    print(pillars)
     smallest = 1
-    for i in range(0, len(pillars)):
-        if abs(pillars[i][3]) < smallest:
-            smallest = pillars[i][3]
+    for p in pillars:
+        print("is in loop")
+        if abs(p[3]) < smallest:
+            print("new smallest %s"%(p[3]))
+            smallest = p[3]
     return smallest
 
 if __name__ == '__main__':

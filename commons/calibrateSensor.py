@@ -1,5 +1,5 @@
-from sensor import Sensor
-from alphabot import AlphaBot
+from .sensor import Sensor
+from .alphabot import AlphaBot
 
 bot = AlphaBot()
 for i in range(0, 20):

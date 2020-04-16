@@ -40,13 +40,14 @@
 
 ## Frage für Donnerstag
  - Können wir Farbe vor die Säulen malen? da der Roboter bei Treffen genau auf eine Säule sich mit dem Kabel verheddert
-  
+  - Linie vor die Säule, oder Säulen ausserhalb des Spielfeldes
+  - Bevorzugt Säulen außerhalb des Spielfeldes
 
 ## TODO
 
 [X] - SSH deploy key generieren und eintragen
 [X] - Werte für Kontrastsensor ermitteln mittels `calibrateSensor.py` -> Werte in `alphabot.py` setzen
-[ ] - Aufg2 und 3 testen
+[ ] - Aufg3 testen
 [ ] - Winkelbestimmung mittels Kontrastsensor konfigurieren
 
 ---

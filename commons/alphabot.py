@@ -1,6 +1,6 @@
-from servo import Servo
-from sensor import Sensor
-from camera import Camera
+from .servo import Servo
+from .sensor import Sensor
+from .camera import Camera
 import time
 import math
 
@@ -28,12 +28,13 @@ class AlphaBot(object):
             #do nothing, because not on line
         self.SERVO.stop()
 
-    def __init__(self):
+    def __init__(self, mitCamera=True) :
         self.SERVO = Servo()
         self.SENSOR = Sensor()
         self.SENSOR.calibratedMin = sensor_mins
         self.SENSOR.calibratedMax = sensor_maxs
-        self.CAMERA = Camera()
+        if mitCamera:
+            self.CAMERA = Camera()
 
     def forwardFor(self, duration):
         self.SERVO.forward()
