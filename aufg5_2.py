@@ -2,6 +2,7 @@ import io
 import picamera
 import logging
 import socketserver
+from commons import AlphaBot
 from threading import Condition
 from http import server
 
@@ -64,7 +65,7 @@ class StreamingOutput(object):
 
 class StreamingHandler(server.BaseHTTPRequestHandler):
     bot = AlphaBot()
-    
+
     def do_GET(self):
         if self.path == '/':
             self.send_response(301)
