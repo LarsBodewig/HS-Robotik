@@ -80,19 +80,19 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.wfile.write(content)
         elif self.path == '/Vorawerts':
             logging.warning('Vorawerts!!!')
-            bot.SERVO.forward()
+            self.bot.SERVO.forward()
         elif self.path == '/Links':
             logging.warning('Links!!!')
-            bot.SERVO.left()
+            self.bot.SERVO.left()
         elif self.path == '/Rechts':
             logging.warning('Rechts!!!')
-            bot.SERVO.right()
+            self.bot.SERVO.right()
         elif self.path == '/Rueckwaerts':
             logging.warning('Rueckwaerts!!!')
-            bot.SERVO.backward()
+            self.bot.SERVO.backward()
         elif self.path == '/Stop':
             logging.warning('Stoooop!!!')
-            bot.SERVO.stop()
+            self.bot.SERVO.stop()
 
         elif self.path == '/stream.mjpg':
             self.send_response(200)
