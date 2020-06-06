@@ -6,45 +6,8 @@ from commons import AlphaBot
 from threading import Condition
 from http import server
 
-PAGE="""\
-<html>
-<head>
-<title>Raspberry Pi - Surveillance Camera</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
-<script type=text/javascript> $(function() { $("#Vorwaerts").click(function (event) { $.getJSON('/Vorwaerts', { }, function(data) { }); return false; }); }); </script>
-<script type=text/javascript> $(function() { $("#Links").click(function (event) { $.getJSON('/Links', { }, function(data) { }); return false; }); }); </script>
-<script type=text/javascript> $(function() { $("#Rechts").click(function (event) { $.getJSON('/Rechts', { }, function(data) { }); return false; }); }); </script>
-<script type=text/javascript> $(function() { $("#Rueckwaerts").click(function (event) { $.getJSON('/Rueckwaerts', { }, function(data) { }); return false; }); }); </script>
-<script type=text/javascript> $(function() { $("#Stop").click(function (event) { $.getJSON('/Stop', { }, function(data) { }); return false; }); }); </script>
-</head>
-<body>
-<p>&nbsp;</p>
-<center>
-<h1>Alphabot 2 - Task 5</h1>
-</center><center><img src="stream.mjpg" width="640" height="480" /></center><center>
-<table>
-<tbody>
-<tr>
-<td>&nbsp;</td>
-<td><button id="Vorwaerts" type="button">Vorw&auml;rts</button></td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td><button id="Links" type="button">Links</button></td>
-<td><button id="Stop" type="button">Stop</button></td>
-<td><button id="Rechts" type="button">Rechts</button></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td><button id="Rueckwaerts" type="button">R&uuml;ckw&auml;rts</button></td>
-<td>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</center>
-</body>
-</html>
-"""
+with open(commons/webcam.html) as html:
+    PAGE = html.read()
 
 class StreamingOutput(object):
     def __init__(self):
