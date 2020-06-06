@@ -76,8 +76,8 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
-        elif self.path == '/Vorawerts':
-            logging.warning('Vorawerts!!!')
+        elif self.path == '/Vorwaerts':
+            logging.warning('Vorwaerts!!!')
         elif self.path == '/Links':
             logging.warning('Links!!!')
         elif self.path == '/Rechts':
@@ -120,7 +120,7 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
 with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
     output = StreamingOutput()
     #Uncomment the next line to change your Pi's Camera rotation (in degrees)
-    camera.rotation = 180
+    #camera.rotation = 180
     camera.start_recording(output, format='mjpeg')
     try:
         address = ('', 8000)
