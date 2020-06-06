@@ -1,4 +1,4 @@
-from searchColorStripes import searchColorStripes
+from .searchColorStripes import searchColorStripes
 from picamera import PiCamera
 from io import BytesIO
 

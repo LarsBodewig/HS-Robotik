@@ -1,4 +1,4 @@
-from searchColorStripes import searchColorStripes
+from .searchColorStripes import searchColorStripes
 import io
 
 #Load the image
