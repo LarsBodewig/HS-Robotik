@@ -19,8 +19,8 @@ def main():
                 bot.leftFor(rotate)
             rotate *= rotate_factor
             pillar_pos = getClosestPillar(bot)
-        if bot.debug: 
-            print("pillar_pos at %s"%(pillar_pos))
+            if bot.debug: 
+                print("pillar_pos at %s"%(pillar_pos))
         while rotate <= rotate_max:
             if direction > 0:
                 bot.rightFor(rotate)
