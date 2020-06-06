@@ -1,6 +1,6 @@
-from servo import Servo
-from sensor import Sensor
-from camera import Camera
+from .servo import Servo
+from .sensor import Sensor
+from .camera import Camera
 import time
 import math
 
