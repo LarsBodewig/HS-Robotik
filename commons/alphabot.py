@@ -33,7 +33,7 @@ class AlphaBot(object):
         self.SENSOR = Sensor()
         self.SENSOR.calibratedMin = sensor_mins
         self.SENSOR.calibratedMax = sensor_maxs
-        #self.CAMERA = Camera()
+        self.CAMERA = Camera()
 
     def forwardFor(self, duration):
         self.SERVO.forward()

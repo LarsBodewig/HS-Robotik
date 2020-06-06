@@ -1,4 +1,5 @@
 from commons import AlphaBot
+import time
 
 rotate_max = 1
 rotate_factor = 0.5
@@ -19,7 +20,7 @@ def main():
                 bot.leftFor(rotate)
             rotate *= rotate_factor
             pillar_pos = getClosestPillar(bot)
-        if bot.debug: 
+        if bot.debug:
             print("pillar_pos at %s"%(pillar_pos))
         while rotate <= rotate_max:
             if direction > 0:
