@@ -33,10 +33,11 @@ def getClosestPillar(bot):
     pillars = bot.CAMERA.searchCorners()
     print(pillars)
     smallest = 1
-    for i in range(0, len(pillars)):
-        if abs(pillars[i][3]) < smallest:
-            print(pillars[i][3])
-            smallest = pillars[i][3]
+    for p in pillars:
+        print("is in loop")
+        if abs(p[3]) < smallest:
+            print("new smallest %s"%(p[3]))
+            smallest = p[3]
     return smallest
 
 if __name__ == '__main__':
