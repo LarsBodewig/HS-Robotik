@@ -20,7 +20,7 @@ def main():
                 bot.leftFor(rotate)
             rotate *= rotate_factor
             pillar_pos = getClosestPillar(bot)
-            if bot.debug: 
+            if bot.debug:
                 print("pillar_pos at %s"%(pillar_pos))
         while rotate <= rotate_max:
             if direction > 0:
@@ -31,6 +31,7 @@ def main():
 
 def getClosestPillar(bot):
     pillars = bot.CAMERA.searchCorners()
+    print(pillars)
     smallest = 1
     for i in range(0, len(pillars)):
         if abs(pillars[i][3]) < smallest:
