@@ -14,14 +14,14 @@ def main():
         pillar_pos = direction
         rotate = rotate_max
         while abs(pillar_pos) - tolerance >= 0:
+            if bot.debug:
+                print("pillar_pos at %s"%(pillar_pos))
             if direction > 0:
                 bot.rightFor(rotate)
             else:
                 bot.leftFor(rotate)
             rotate *= rotate_factor
             pillar_pos = getClosestPillar(bot)
-            if bot.debug:
-                print("pillar_pos at %s"%(pillar_pos))
         while rotate <= rotate_max:
             if direction > 0:
                 bot.rightFor(rotate)
@@ -35,6 +35,7 @@ def getClosestPillar(bot):
     smallest = 1
     for i in range(0, len(pillars)):
         if abs(pillars[i][3]) < smallest:
+            print(pillars[i][3])
             smallest = pillars[i][3]
     return smallest
 
