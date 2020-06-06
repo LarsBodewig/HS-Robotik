@@ -1,4 +1,5 @@
 from commons import AlphaBot
+import time
 
 rotate_max = 1
 rotate_factor = 0.5
