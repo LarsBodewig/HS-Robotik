@@ -64,7 +64,7 @@ class StreamingOutput(object):
         return self.buffer.write(buf)
 
 class StreamingHandler(server.BaseHTTPRequestHandler):
-    bot = AlphaBot()
+    bot = AlphaBot(mitCamera=False)
 
     def do_GET(self):
         if self.path == '/':
