@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<title>Raspberry Pi - Surveillance Camera</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			body { margin: 0; display: flex; flex-flow: column; height: 100%; }
+			header div { display: flex; justify-content: stretch; align-items: center; border-bottom: 0.2vh solid grey; background-color: lightblue; }
+			#icon { width: 3rem; vertial-align: middle; margin-left: 0.5rem; }
+			#title { flex: 1; font-family: Courier New; font-size: 1.5rem; margin-left: 0.25rem; }
+			main { flex-grow: 1; }
+			section { height: 100%; display: flex; flex-flow: column; }
+			#stream { width: 100%; max-height: 50vh; background: url(https://media1.tenor.com/images/31e237c8c5be6c2eb2eb552a154b9b31/tenor.gif) no-repeat; background-position: center; background-color: #040204; background-size: contain; border-bottom: 0.2vh solid darkgrey; min-height: 40vh; }
+			#control { padding: 2rem; flex: 1; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
+			#control::after { content: ""; display:block; padding-bottom: 100%; }
+			.button-container { display: flex; background-color: lightgray; }
+			button { border-radius: 0.5rem; border: 0.5rem outset darkgrey; background-color: #d8c9f1; position: relative; flex: 1; overflow: hidden; margin: 0.5rem; }
+			button:active { border-style: inset; background-color: #baacd2; }
+			button::before { content: ""; position: absolute; background-size: contain; background-position: center; background-repeat: no-repeat; }
+			.button-dir::before { width: 80%; height: 80%; top: 10%; left: 10%; background-image: url(https://image.flaticon.com/icons/svg/31/31128.svg); }
+			#button-stop::before { width: 60%; height: 60%; top: 20%; left: 20%; background-image: url(https://image.flaticon.com/icons/svg/481/481037.svg); }
+			#button-up::before { transform: rotate(-90deg); }
+			#button-left::before { transform: rotate(180deg); }
+			#button-down::before { transform: rotate(90deg); }
+			footer div { border-top: 0.2vh solid grey; margin: 0 1.5rem; }
+			footer div p { font-family: Courier New; font-size: 0.9rem; }
+			@media only screen and (min-width: 950px) {
+				#icon { width: 5rem; }
+				#title { font-size: 3rem; }
+				section { flex-flow: row; align-items: stretch; justify-content: stretch; }
+				#stream { max-height: initial; align-self: stretch; max-width: initial; }
+				#wrapper { display: flex; align-items: center; width: 50%; }
+				#control { padding: 2rem; }
+				button { margin: 1vw; border-size: 1vw; }
+			}
+		</style>
+		<script type="text/javascript">
+			function send(url) {
+				fetch(window.location + '/' + url);
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<div>
+				<img src="https://www.raspberrypi.org/app/uploads/2011/10/Raspi-PGB001.png" alt="Raspberry Pi" title="Raspberry Pi" id="icon"/>
+				<h1 id="title">Alphabot 2 - Task 5</h1>
+			</div>
+		</header>
+		<main>
+			<section>
+				<img src="stream.mjpeg" id="stream"/>
+				<div id="wrapper">
+					<div id="control">
+						<div class="button-container" style="grid-area: 1 / 2">
+							<button id="button-up" class="button-dir" onclick="send('Vorwaerts')"></button>
+						</div>
+						<div class="button-container" style="grid-area: 2 / 1">
+							<button id="button-left" class="button-dir" onclick="send('Links')"></button>
+						</div>
+						<div class="button-container" style="grid-area: 2 / 3">
+							<button id="button-right" class="button-dir" onclick="send('Rechts')"></button>
+						</div>
+						<div class="button-container" style="grid-area: 3 / 2" >
+							<button id="button-down" class="button-dir" onclick="send('Rueckwaerts')"></button>
+						</div>
+						<div class="button-container" style="grid-area: 2 / 2">
+							<button id="button-stop" onclick="send('Stop')"></button>
+							<div>
+							</div>
+						</div>
+					</section>
+				</main>
+				<footer>
+					<div>
+						<p>
+					SS20-OptRob-ai-T01
+						</p>
+					</div>
+				</footer>
+			</body>
+		</html>
