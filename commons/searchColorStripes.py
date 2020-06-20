@@ -18,11 +18,19 @@ class searchColorStripes(object):
     scndC = (33, 178, 77)
     thrdC = (0, 162, 234)
 
+
+    frstC2 = (238, 26, 38)
+    scndC2 = (33, 178, 77)
+    thrdC2 = (0, 162, 234)
+
     debug = False
     #------ CONFIG
 
     #default
-    def __init__(self, newCropPercentage=0.1, newRgbToleranze=20, newMaxPixelBetweenXHits=2, newMaxPixelBetweenYHits=10, newFirstColor=(238, 26, 38), newSecondColor=(33, 178, 77), newThirdColor=(0, 162, 234), newDebug = False):
+    def __init__(self, newCropPercentage=0.1, newRgbToleranze=20, newMaxPixelBetweenXHits=2, newMaxPixelBetweenYHits=10,
+            newFirstColor=(238, 26, 38), newSecondColor=(33, 178, 77), newThirdColor=(0, 162, 234),
+            newFirstColor2=(238, 26, 38), newSecondColor2=(33, 178, 77), newThirdColor2=(0, 162, 234),
+            newDebug = False):
         self.debug = newDebug
         if self.debug : print('I\'m ready!')
         self.cropPercentage = newCropPercentage
@@ -32,18 +40,27 @@ class searchColorStripes(object):
         self.frstC = newFirstColor
         self.scndC = newSecondColor
         self.thrdC = newThirdColor
+        self.frstC2 = newFirstColor2
+        self.scndC2 = newSecondColor2
+        self.thrdC2 = newThirdColor2
         if self.debug : print('CONFIG: CP: %s RGB-T: %s MPX: %s MPY: %s C1: %s C2: %s C3: %s '%(self.cropPercentage, self.rgbToleranze, self.maxPixelBetweenXHits, self.maxPixelBetweenYHits, self.frstC, self.scndC, self.thrdC))
 
+    def lowerOfTwo(self, x1, x2):
+        if x1 < x2:
+            return x1
+        return x2
+
+    def higherOfTwo(self, x1, x2):
+        if x1 < x2:
+            return x2
+        return x1
     # test for colors within the same range tested by toleranze
     # also same value is an hit
-    def compareColors(self, color1, color2, toleranze):
-        r1 = color1[0]
-        g1 = color1[1]
-        b1 = color1[2]
+    def compareColors(self, color1, color1_2, color2, toleranze):
         r2 = color2[0]
         g2 = color2[1]
         b2 = color2[2]
-        if (r1-toleranze <= r2 <= r1+toleranze) and (g1-toleranze <= g2 <= g1+toleranze) and (b1-toleranze <= b2 <= b1+toleranze):
+        if (self.lowerOfTwo(color1[0], color1_2[0])-toleranze <= r2 <= self.higherOfTwo(color1[0], color1_2[0])+toleranze)       and (self.lowerOfTwo(color1[1], color1_2[1])-toleranze <= g2 <= self.higherOfTwo(color1[1], color1_2[1])+toleranze)        and (self.lowerOfTwo(color1[2], color1_2[2])-toleranze <= b2 <= self.higherOfTwo(color1[2], color1_2[2])+toleranze):
             return True
         return False
     # returns a tuple of (boolean, firstY, lastY, ordered sequence of colors)
@@ -74,22 +91,22 @@ class searchColorStripes(object):
             # if the first hit y-coordinate is not set ( eq. -1) set it to the first y of that representive color
             # always sets the last y-coodinate of that color to the last y found
             # also increases the total amount of pixels found of one color
-            if self.compareColors(self.frstC, thisPixel, self.rgbToleranze):
-                if self.compareColors(self.frstC, nextPixel,self. rgbToleranze):
+            if self.compareColors(self.frstC, self.frstC2, thisPixel, self.rgbToleranze):
+                if self.compareColors(self.frstC,self.frstC2, nextPixel,self. rgbToleranze):
                     if fstHitOfFstColor == -1:
                         orderOfColors.append(1)
                         fstHitOfFstColor = y
                     lastHitOfFstColor = y
                     firstHits += 1
-            if self.compareColors(self.scndC, thisPixel, self.rgbToleranze):
-                if self.compareColors(self.scndC, nextPixel, self.rgbToleranze):
+            if self.compareColors(self.scndC, self.scndC2, thisPixel, self.rgbToleranze):
+                if self.compareColors(self.scndC, self.scndC2, nextPixel, self.rgbToleranze):
                     if fstHitOfSndColor == -1:
                         orderOfColors.append(2)
                         fstHitOfSndColor = y
                     lastHitOfSndColor = y
                     secondHits += 1
-            if self.compareColors(self.thrdC, thisPixel, self.rgbToleranze):
-                if self.compareColors(self.thrdC, nextPixel, self.rgbToleranze):
+            if self.compareColors(self.thrdC, self.thrdC2, thisPixel, self.rgbToleranze):
+                if self.compareColors(self.thrdC, self.thrdC2, nextPixel, self.rgbToleranze):
                     if fstHitOfTrdColor == -1:
                         orderOfColors.append(3)
                         fstHitOfTrdColor = y
@@ -210,7 +227,8 @@ class searchColorStripes(object):
                 last = -1
         #last pixel hit wont be captured in for-iteration, so last result is added here
         if self.debug : print (avarageYs)
-        colorStripeRange.append(self.createResultTupel(first, last, width, statistics.mean(avarageYs), lastColorSequence))
+        if len(avarageYs) > 0:
+            colorStripeRange.append(self.createResultTupel(first, last, width, statistics.mean(avarageYs), lastColorSequence))
 
         return colorStripeRange
 
