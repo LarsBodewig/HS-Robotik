@@ -10,8 +10,8 @@ class Servo(object):
         self.BIN2 = bin2
         self.ENA = ena
         self.ENB = enb
-        self.PA  = 40
-        self.PB  = 65
+        self.PA  = 33 # RECHTS
+        self.PB  = 30 # LINKS
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
@@ -54,7 +54,7 @@ class Servo(object):
 
     def left(self):
         self.PWMA.ChangeDutyCycle(30)
-        self.PWMB.ChangeDutyCycle(30)
+        self.PWMB.ChangeDutyCycle(54)
         GPIO.output(self.AIN1,GPIO.HIGH)
         GPIO.output(self.AIN2,GPIO.LOW)
         GPIO.output(self.BIN1,GPIO.LOW)

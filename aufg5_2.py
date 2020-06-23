@@ -6,7 +6,7 @@ from commons import AlphaBot
 from threading import Condition
 from http import server
 
-with open(commons/webcam.html) as html:
+with open('./commons/webcam.html') as html:
     PAGE = html.read()
 
 class StreamingOutput(object):
@@ -41,23 +41,23 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
-        elif self.path == '/Vorwaerts':
+        elif self.path == '/index.html/Vorwaerts':
             logging.warning('Vorwaerts!!!')
             self.bot.SERVO.forward()
-        elif self.path == '/Links':
+        elif self.path == '/index.html/Links':
             logging.warning('Links!!!')
             self.bot.SERVO.left()
-        elif self.path == '/Rechts':
+        elif self.path == '/index.html/Rechts':
             logging.warning('Rechts!!!')
             self.bot.SERVO.right()
-        elif self.path == '/Rueckwaerts':
+        elif self.path == '/index.html/Rueckwaerts':
             logging.warning('Rueckwaerts!!!')
             self.bot.SERVO.backward()
-        elif self.path == '/Stop':
+        elif self.path == '/index.html/Stop':
             logging.warning('Stoooop!!!')
             self.bot.SERVO.stop()
 
-        elif self.path == '/stream.mjpg':
+        elif self.path == '/stream.mjpeg':
             self.send_response(200)
             self.send_header('Age', 0)
             self.send_header('Cache-Control', 'no-cache, private')
