@@ -5,7 +5,7 @@ import socketserver
 from threading import Condition
 from http import server
 
-with open(commons/webcam.html) as html:
+with open('commons/webcam.html') as html:
     PAGE = html.read()
 
 class StreamingOutput(object):
