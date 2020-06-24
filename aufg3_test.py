@@ -10,7 +10,7 @@ def main():
     bot.debug = True
     streamImage = bot.CAMERA.captureImage()
     img = bot.CAMERA.scs.drawBlackLinesOnImg(streamImage)
-    img[0].save('./cameraTestImages/test_24-06-2020.jpg')
+    img[0].save('./cameraTestImages/test_24-06-2020-2.jpg')
 
 
 
