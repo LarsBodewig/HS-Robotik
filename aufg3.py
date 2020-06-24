@@ -9,8 +9,8 @@ def main():
     bot = AlphaBot()
     bot.debug = True
     while True:
-        direction = getClosestPillar(bot)
         bot.forwardUntilOnLine(15)
+        direction = getClosestPillar(bot)
         pillar_pos = direction
         rotate = rotate_max
         while abs(pillar_pos) - tolerance >= 0:
