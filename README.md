@@ -1,4 +1,6 @@
-# SS_20_Robotik_T01
+# HS-Robotik
+
+Robotics related coding project in University
 
 ## Challenges
 
