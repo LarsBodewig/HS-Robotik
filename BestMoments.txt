@@ -1,3 +1,0 @@
-Roboter fährt mit volldampf auf Säule drauf, Video hatte nicht aufgenommen :(
-
-Roboter steht Kerzengerade auf der Linie -> Winkelberechnung führt zu division durch 0
